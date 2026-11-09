@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  node-monitor-server:
+    image: ghcr.io/你的GitHub用户名/node-monitor-server:latest
+    container_name: node-monitor-server
+    restart: always
+    ports:
+      - "6000:6000"
+    environment:
+      - WEB_PASSWORD=your_secure_password      # 网页后台访问密码
+      - AGENT_SECRET_TOKEN=YOUR_AGENT_SECRET_TOKEN # Agent 接收上报密钥

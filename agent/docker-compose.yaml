@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  node-monitor-agent:
+    image: ghcr.io/你的GitHub用户名/node-monitor-agent:latest
+    container_name: node-monitor-agent
+    restart: always
+    network_mode: host
+    pid: host
+    volumes:
+      - /:/host_root:ro
+    environment:
+      - SERVER_URL=https://你的主控端IP:6000/api/report
+      - SECRET_TOKEN=YOUR_AGENT_SECRET_TOKEN # 必须与主控端设置的一致
+      - NODE_ID=node-tokyo-01
+      - NODE_NAME=Tokyo Node
+      - INTERFACE=eth0
+      - INTERVAL=3         # 上报时间间隔（秒）
+      - IP_CACHE_TTL=300   # IP 缓存有效期（秒），默认 5 分钟（300秒）
